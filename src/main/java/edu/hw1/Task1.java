@@ -7,6 +7,9 @@ public class Task1 {
     }
 
     public static int minutesToSeconds(String time) {
+        if (time == null) {
+            return -1;
+        }
         String[] splitData = time.split(":");
         if (splitData.length < 2) {
             return -1;

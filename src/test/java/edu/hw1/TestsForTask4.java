@@ -27,4 +27,10 @@ public class TestsForTask4 {
     void test4() {
         assert (Task4.fixString("a").equals("a"));
     }
+
+    @Test
+    @DisplayName("null input test")
+    void test5() {
+        assert (Task4.fixString(null) == null);
+    }
 }

@@ -28,4 +28,10 @@ public class TestsForTask1 {
     void test4() {
         assertThat(Task1.minutesToSeconds("1030") == -1);
     }
+
+    @Test
+    @DisplayName("null input test")
+    void test5() {
+        assertThat(Task1.minutesToSeconds(null) == -1);
+    }
 }
