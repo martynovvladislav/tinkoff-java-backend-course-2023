@@ -18,13 +18,13 @@ public class TestsForTask1 {
     }
 
     @Test
-    @DisplayName("10:60(incorrect) test")
+    @DisplayName("10:60(negative) test")
     void test3() {
         assertThat(Task1.minutesToSeconds("10:60") == -1);
     }
 
     @Test
-    @DisplayName("incorrect input test")
+    @DisplayName("negative input test")
     void test4() {
         assertThat(Task1.minutesToSeconds("1030") == -1);
     }

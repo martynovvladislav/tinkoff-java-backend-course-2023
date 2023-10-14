@@ -6,31 +6,32 @@ import java.util.Collections;
 public class Task6 {
     private Task6() {}
 
-    @SuppressWarnings({"checkstyle: MagicNumber", "checkstyle:MagicNumber"})
+    public static final int KAP_CONST = 6174;
+    public static final int RADIX = 10;
+    public static final int NUMBER_LENGTH = 4;
+
     public static int countK(int num) {
         if (num < 0) {
             return -1;
         }
-        final int kapConst = 6174;
-        final int radix = 10;
-        if (num == kapConst) {
+        if (num == KAP_CONST) {
             return 0;
         }
         ArrayList<Integer> list = new ArrayList<Integer>();
         int tempNum = num;
         while (tempNum > 0) {
-            list.add(tempNum % radix);
-            tempNum /= radix;
+            list.add(tempNum % RADIX);
+            tempNum /= RADIX;
         }
-        while (list.size() < 4) {
+        while (list.size() < NUMBER_LENGTH) {
             list.add(0);
         }
         Collections.sort(list, Collections.reverseOrder());
         int ascNum = 0;
         int descNum = 0;
         for (int i = 0; i < list.size(); i++) {
-            descNum *= radix;
-            ascNum *= radix;
+            descNum *= RADIX;
+            ascNum *= RADIX;
             descNum += list.get(i);
             ascNum += list.get(list.size() - i - 1);
         }

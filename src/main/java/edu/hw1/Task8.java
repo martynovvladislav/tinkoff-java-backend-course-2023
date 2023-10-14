@@ -4,7 +4,8 @@ public class Task8 {
     private Task8() {
     }
 
-    @SuppressWarnings("checkstyle:MagicNumber") public static boolean knightBoardCapture(int[][] board) {
+    @SuppressWarnings("checkstyle:MagicNumber")
+    public static boolean knightBoardCapture(int[][] board) {
         int[][] diffs =
             new int[][] {new int[] {1, 2}, new int[] {2, 1}, new int[] {-1, 2}, new int[] {2, -1}, new int[] {-2, 1},
                 new int[] {1, -2}, new int[] {-1, -2}, new int[] {-2, -1}};

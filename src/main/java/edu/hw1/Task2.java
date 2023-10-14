@@ -5,7 +5,8 @@ import static java.lang.Math.abs;
 public class Task2 {
     private Task2() {}
 
-    @SuppressWarnings("checkstyle:MagicNumber") public static int countDigits(int number) {
+    @SuppressWarnings("checkstyle:MagicNumber")
+    public static int countDigits(int number) {
         int numberChange = number;
         if (numberChange == 0) {
             return 1;
