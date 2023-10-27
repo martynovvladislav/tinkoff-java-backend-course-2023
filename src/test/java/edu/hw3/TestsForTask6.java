@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 public class TestsForTask6 {
     @Test
     @DisplayName("add and remove stocks test")
-    void test1() {
+    void addAndRemoveStocksTest() {
         Market market = new Market();
         Stock sber = new Stock("Sberbank", 270);
         Stock gazp = new Stock("Gazprom", 170);
@@ -31,7 +31,7 @@ public class TestsForTask6 {
 
     @Test
     @DisplayName("most valuable stock test")
-    void test2() {
+    void MostValuableStockTest() {
         Market market = new Market();
         Stock sber = new Stock("Sberbank", 270);
         Stock gazp = new Stock("Gazprom", 170);

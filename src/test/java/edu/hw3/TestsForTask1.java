@@ -7,19 +7,19 @@ import org.junit.jupiter.api.Test;
 public class TestsForTask1 {
     @Test
     @DisplayName("null argument test")
-    void test1() {
+    void nullArgsTest() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> Task1.atbash(null));
     }
 
     @Test
     @DisplayName("small text with different symbols test")
-    void test2() {
+    void smallTextTest() {
         Assertions.assertEquals(Task1.atbash("Hello world!"), "Svool dliow!");
     }
 
     @Test
     @DisplayName("big text with different symbols test")
-    void test3() {
+    void bigTextTest() {
         String inputData = "Any fool can write code that a computer can understand. " +
             "Good programmers write code that humans can understand. ― Martin Fowler";
         String outputData = "Zmb ullo xzm dirgv xlwv gszg z xlnkfgvi xzm fmwvihgzmw. " +

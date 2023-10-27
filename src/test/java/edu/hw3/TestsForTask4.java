@@ -17,7 +17,7 @@ public class TestsForTask4 {
     @ParameterizedTest
     @DisplayName("negative inputs test")
     @MethodSource("negativeInputs")
-    void task1(int number) {
+    void negativeInputTest(int number) {
         Assertions.assertThrows(IllegalArgumentException.class, () -> Task4.convertToRoman(number));
     }
 
@@ -33,7 +33,7 @@ public class TestsForTask4 {
     @ParameterizedTest
     @DisplayName("positive inputs test")
     @MethodSource("positiveInputs")
-    void task1(int number, String expected) {
+    void positiveInputTest(int number, String expected) {
         Assertions.assertEquals(Task4.convertToRoman(number), expected);
     }
 }

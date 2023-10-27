@@ -22,7 +22,7 @@ public class TestsForTask5 {
     @ParameterizedTest
     @DisplayName("negative list inputs test")
     @MethodSource("wrongListInputs")
-    void test1(List<String> contactStrings, String order) {
+    void negativeListInputTest(List<String> contactStrings, String order) {
         Assertions.assertEquals(Task5.parseContacts(contactStrings, order), new ArrayList<>());
     }
 
@@ -36,7 +36,7 @@ public class TestsForTask5 {
     @ParameterizedTest
     @DisplayName("wrong order test")
     @MethodSource("wrongOrderInputs")
-    void test2(List<String> contactStrings, String order) {
+    void negativeOrderInputTest(List<String> contactStrings, String order) {
         Assertions.assertThrows(IllegalArgumentException.class, () -> Task5.parseContacts(contactStrings, order));
     }
 
@@ -53,15 +53,15 @@ public class TestsForTask5 {
     }
 
     @ParameterizedTest
-    @DisplayName("wrong order test")
+    @DisplayName("positive input test")
     @MethodSource("positiveInput")
-    void test3(List<String> contactStrings, String order, List<Contact> contactList) {
+    void positiveInputTest(List<String> contactStrings, String order, List<Contact> contactList) {
         Assertions.assertEquals(Task5.parseContacts(contactStrings, order), contactList);
     }
 
     @Test
     @DisplayName("incomplete contact test")
-    void test4() {
+    void incompleteContactsDataTest() {
         List<String> contactStrings = new ArrayList<>(List.of("John Doe", "Vladislav", "Alex Alex"));
         Assertions.assertEquals(Task5.parseContacts(contactStrings, "ASC"), new ArrayList<>(
             List.of(new Contact("Alex", "Alex"), new Contact("John", "Doe"),

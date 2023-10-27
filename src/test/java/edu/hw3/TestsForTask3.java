@@ -14,7 +14,7 @@ import java.util.Map;
 public class TestsForTask3 {
     @Test
     @DisplayName("null argument test")
-    void test1() {
+    void nullArgsTest() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> Task3.freqDict(null));
     }
 
@@ -42,7 +42,7 @@ public class TestsForTask3 {
     @ParameterizedTest
     @DisplayName("test with different objects")
     @MethodSource("objectLists")
-    void test2(List<Object> objectList, Map<Object, Integer> ansDict) {
+    void differentObjectsInputTest(List<Object> objectList, Map<Object, Integer> ansDict) {
         Assertions.assertEquals(ansDict, Task3.freqDict(objectList));
     }
 }

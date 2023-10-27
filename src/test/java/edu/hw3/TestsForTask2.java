@@ -14,7 +14,7 @@ import java.util.List;
 public class TestsForTask2 {
     @Test
     @DisplayName("null argument test")
-    void test1() {
+    void nullArgsTest() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> Task2.clusterize(null));
     }
 
@@ -28,7 +28,7 @@ public class TestsForTask2 {
     @ParameterizedTest
     @DisplayName("negative input test")
     @MethodSource("unbalancedSequences")
-    void test2(String inputSequence) {
+    void unbalancedSequenceInputTest(String inputSequence) {
         Assertions.assertThrows(InvalidBracketsSequenceException.class, () -> Task2.clusterize(inputSequence));
     }
 
@@ -44,7 +44,7 @@ public class TestsForTask2 {
     @ParameterizedTest
     @DisplayName("positive input test")
     @MethodSource("balancedSequences")
-    void test3(String inputSequence, List<String> clustersList) {
+    void balancedSequenceInputTest(String inputSequence, List<String> clustersList) {
         Assertions.assertEquals(clustersList, Task2.clusterize(inputSequence));
     }
 }

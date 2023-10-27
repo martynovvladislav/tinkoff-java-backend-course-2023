@@ -8,7 +8,7 @@ import java.util.TreeMap;
 public class TestsForTask7 {
     @Test
     @DisplayName("null insert test")
-    void test1() {
+    void insertNullArgumentTest() {
         TreeMap<String, String> treeMap = Task7.addNull();
         Assertions.assertTrue(treeMap.containsKey(null));
     }

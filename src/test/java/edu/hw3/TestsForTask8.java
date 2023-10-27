@@ -14,7 +14,7 @@ import java.util.List;
 public class TestsForTask8 {
     @Test
     @DisplayName("hasNext test")
-    void test1() {
+    void backwardIteratorHasNextTest() {
         Iterator<Integer> backwardIterator = new BackwardIterator<>(List.of(1, 2, 3));
         Assertions.assertTrue(backwardIterator.hasNext());
     }
@@ -29,7 +29,7 @@ public class TestsForTask8 {
     @ParameterizedTest
     @DisplayName("objects of different types test")
     @MethodSource("objectLists")
-    void test1(List<Object> list) {
+    void differentListsOfObjectsIteratorTest(List<Object> list) {
         Iterator<Object> backwardIterator = new BackwardIterator<>(list);
         List<Object> outputList = new ArrayList<>();
         while (backwardIterator.hasNext()) {
