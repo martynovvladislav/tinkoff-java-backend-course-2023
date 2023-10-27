@@ -7,8 +7,8 @@ import static edu.hw2.Task4.CallingInfo.callingInfo;
 
 public class TestsForTask4 {
     @Test
-    @DisplayName("Calling info test")
-    void test1() {
-        Assertions.assertThat(new Task4.CallingInfo("edu.hw2.TestsForTask4", "test1")).isEqualTo(callingInfo());
+    @DisplayName("get information about the caller of 'Calling info' method")
+    void getCallerTest() {
+        Assertions.assertThat(new Task4.CallingInfo("edu.hw2.TestsForTask4", "getCallerTest")).isEqualTo(callingInfo());
     }
 }

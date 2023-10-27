@@ -12,8 +12,7 @@ public class DefaultConnectionManager implements ConnectionManager {
     public Connection getConnection() {
         if (RAND.nextBoolean()) {
             return new StableConnection();
-        } else {
-            return new FaultyConnection();
         }
+        return new FaultyConnection();
     }
 }

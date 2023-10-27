@@ -6,8 +6,8 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class TestsForTask1 {
     @Test
-    @DisplayName("init test ((2 + 4) * (-1)) ^ 2 + 1 = 37")
-    void test1() {
+    @DisplayName("test with integer values as arguments")
+    void integerTest() {
         var two = new Task1.Expr.Constant(2);
         var four = new Task1.Expr.Constant(4);
         var negOne = new Task1.Expr.Negate(new Task1.Expr.Constant(1));
@@ -19,8 +19,8 @@ public class TestsForTask1 {
     }
 
     @Test
-    @DisplayName("double test ((1.5 + 2) * (-3)) ^ 2 + 1 = 111")
-    void test4() {
+    @DisplayName("test with double values as arguments")
+    void doubleTest() {
         var oneAndHalf = new Task1.Expr.Constant(1.5);
         var two = new Task1.Expr.Constant(2);
         var negOne = new Task1.Expr.Negate(new Task1.Expr.Constant(3));

@@ -24,14 +24,14 @@ public class TestsForTask3 {
     @ParameterizedTest
     @DisplayName("Executing commands test")
     @MethodSource("test1Args")
-    void test1(ConnectionManager manager, int maxAttempts) {
+    void executingTest(ConnectionManager manager, int maxAttempts) {
         PopularCommandExecutor executor = new PopularCommandExecutor(manager, maxAttempts);
         executor.updatePackages();
     }
 
     @Test
     @DisplayName("Exceptions throwing test")
-    void test2() {
+    void exceptionThrowingTest() {
         ConnectionManager manager = new FaultyConnectionManager();
         int maxAttempts = 1;
         PopularCommandExecutor executor = new PopularCommandExecutor(manager, maxAttempts);
