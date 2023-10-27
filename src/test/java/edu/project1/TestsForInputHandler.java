@@ -10,7 +10,7 @@ import java.io.InputStream;
 public class TestsForInputHandler {
     @Test
     @DisplayName("letter positive input test")
-    public void test1() {
+    public void positiveInputTest() {
         ByteArrayInputStream inputStream = new ByteArrayInputStream("a\n".getBytes());
         InputStream originalSystemIn = System.in;
         System.setIn(inputStream);
@@ -20,7 +20,7 @@ public class TestsForInputHandler {
 
     @Test
     @DisplayName("'user give up' test")
-    public void test2() {
+    public void giveUpTest() {
         ByteArrayInputStream inputStream = new ByteArrayInputStream("!\n".getBytes());
         InputStream originalSystemIn = System.in;
         System.setIn(inputStream);
@@ -30,17 +30,7 @@ public class TestsForInputHandler {
 
     @Test
     @DisplayName("letter negative input test")
-    public void test3() {
-        ByteArrayInputStream inputStream = new ByteArrayInputStream("abc\n".getBytes());
-        InputStream originalSystemIn = System.in;
-        System.setIn(inputStream);
-        Assertions.assertThrows(RuntimeException.class, InputHandler::getLetter);
-        System.setIn(originalSystemIn);
-    }
-
-    @Test
-    @DisplayName("letter negative input test")
-    public void test4() {
+    public void negativeInputTest() {
         ByteArrayInputStream inputStream = new ByteArrayInputStream("abc\n".getBytes());
         InputStream originalSystemIn = System.in;
         System.setIn(inputStream);
@@ -50,7 +40,7 @@ public class TestsForInputHandler {
 
     @Test
     @DisplayName("exit positive input test")
-    public void test5() {
+    public void positiveExitInputTest() {
         ByteArrayInputStream inputStream = new ByteArrayInputStream("y\n".getBytes());
         InputStream originalSystemIn = System.in;
         System.setIn(inputStream);
@@ -60,7 +50,7 @@ public class TestsForInputHandler {
 
     @Test
     @DisplayName("exit negative input test")
-    public void test6() {
+    public void negativeExitInputTest() {
         ByteArrayInputStream inputStream = new ByteArrayInputStream("f\n".getBytes());
         InputStream originalSystemIn = System.in;
         System.setIn(inputStream);

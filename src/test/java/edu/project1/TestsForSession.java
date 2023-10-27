@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 public class TestsForSession {
     @Test
     @DisplayName("user's right guess test")
-    void test1() {
+    void rightGuessTest() {
         Session session = new Session("apple");
         int lastUserAttempt = session.getAttempt();
         session.guess('a');
@@ -21,7 +21,7 @@ public class TestsForSession {
 
     @Test
     @DisplayName("user's wrong guess test")
-    void test2() {
+    void wrongGuessTest() {
         Session session = new Session("apple");
         int lastUserAttempt = session.getAttempt();
         session.guess('t');
@@ -31,7 +31,7 @@ public class TestsForSession {
 
     @Test
     @DisplayName("user's same guess test")
-    void test3() {
+    void sameGuessTest() {
         Session session = new Session("apple");
         session.guess('a');
         int lastUserAttempt = session.getAttempt();
@@ -63,7 +63,7 @@ public class TestsForSession {
     @ParameterizedTest
     @DisplayName("user won test")
     @MethodSource("winArguments")
-    void test4(Session session) {
+    void winTest(Session session) {
         Assertions.assertTrue(session.win());
     }
 
@@ -88,7 +88,7 @@ public class TestsForSession {
     @ParameterizedTest
     @DisplayName("user lost test")
     @MethodSource("loseArguments")
-    void test5(Session session) {
+    void loseTest(Session session) {
         Assertions.assertTrue(session.lose());
     }
 }

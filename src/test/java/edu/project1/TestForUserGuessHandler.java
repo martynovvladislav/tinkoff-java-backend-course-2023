@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 public class TestForUserGuessHandler {
     @Test
     @DisplayName("user's right guess test")
-    void test1() {
+    void rightGuessTest() {
         Session session = new Session("tomato");
         int expectedAttempt = session.getAttempt();
         Assertions.assertTrue(UserGuessHandler.checkUserAnswer(session, 'o'));
@@ -18,7 +18,7 @@ public class TestForUserGuessHandler {
 
     @Test
     @DisplayName("user's wrong guess test")
-    void test2() {
+    void wrongGuessTest() {
         Session session = new Session("tomato");
         Assertions.assertFalse(UserGuessHandler.checkUserAnswer(session, 'q'));
         Assertions.assertEquals(String.valueOf(session.getUserAnswer()), "******");
@@ -26,7 +26,7 @@ public class TestForUserGuessHandler {
 
     @Test
     @DisplayName("user's same guess test")
-    void test3() {
+    void sameGuessTest() {
         Session session = new Session("tomato");
         session.guess('t');
         Assertions.assertThrows(
@@ -39,7 +39,7 @@ public class TestForUserGuessHandler {
 
     @Test
     @DisplayName("user guessed the whole word test")
-    void test4() {
+    void wholeWordGuessTest() {
         Session session = new Session("tomato");
         for (char letter : new char[] {'t', 'o', 'm', 'a'}) {
             session.guess(letter);
