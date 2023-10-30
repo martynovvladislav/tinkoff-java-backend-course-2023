@@ -5,7 +5,7 @@ import edu.project1.exceptions.AlreadyGuessedLetterException;
 public class Session {
     private final String answer;
     private char[] userAnswer;
-    private final int maxAttempts = 5;
+    private final static int MAX_ATTEMPTS = FileHandler.getFileMaxAttempts();
     private int attempt;
 
     public Session(String answer) {
@@ -42,7 +42,7 @@ public class Session {
     }
 
     public int getMaxAttempts() {
-        return maxAttempts;
+        return MAX_ATTEMPTS;
     }
 
     public String getWord() {
@@ -50,10 +50,10 @@ public class Session {
     }
 
     public boolean win() {
-        return UserGuessHandler.win(getUserAnswer()) && attempt < maxAttempts;
+        return UserGuessHandler.win(getUserAnswer()) && attempt < MAX_ATTEMPTS;
     }
 
     public boolean lose() {
-        return !UserGuessHandler.win(getUserAnswer()) && attempt >= maxAttempts;
+        return !UserGuessHandler.win(getUserAnswer()) && attempt >= MAX_ATTEMPTS;
     }
 }

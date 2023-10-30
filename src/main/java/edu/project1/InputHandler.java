@@ -10,7 +10,7 @@ public class InputHandler {
     public static char getLetter() {
         Scanner scanner = new Scanner(System.in);
         char[] inputData = scanner.nextLine().toCharArray();
-        if (inputData.length > 1 || inputData.length == 0 || inputData.equals(null)) {
+        if (inputData.length != 1) {
             throw new RuntimeException();
         } else if (inputData[0] == '!') {
             throw new GiveUpException();
@@ -24,7 +24,7 @@ public class InputHandler {
     public static boolean getStopLetter() {
         Scanner scanner = new Scanner(System.in);
         char[] inputData = scanner.nextLine().toCharArray();
-        if (inputData.length > 1 || inputData.length == 0 || inputData.equals(null)) {
+        if (inputData.length != 1) {
             throw new RuntimeException();
         } else if (inputData[0] == 'y') {
             return true;

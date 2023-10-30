@@ -1,0 +1,6 @@
+Enter maxAttempts in the next line:
+10
+Enter words in the next line:
+apple
+tomato
+cucumber

@@ -1,6 +1,8 @@
 package edu.project1;
 
 import edu.project1.exceptions.AlreadyGuessedLetterException;
+import edu.project1.exceptions.FileMaxAttemptsException;
+import edu.project1.exceptions.FileWordException;
 import edu.project1.exceptions.GiveUpException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -10,7 +12,20 @@ public class Game {
 
     private static final Logger LOGGER = LogManager.getLogger();
 
+    @SuppressWarnings("checkstyle:ReturnCount")
     public void run() {
+        try {
+            FileHandler.getInfoFromFile();
+        } catch (FileMaxAttemptsException e) {
+            LOGGER.info("Wrong maxAttempts input in file");
+            return;
+        } catch (FileWordException e) {
+            LOGGER.info("Wrong word input in file");
+            return;
+        } catch (RuntimeException e) {
+            LOGGER.info("File not found!");
+            return;
+        }
         LOGGER.info("Hello! This is 'Hangman Game'\n");
         outerloop:
         while (true) {

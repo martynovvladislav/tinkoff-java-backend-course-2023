@@ -14,12 +14,12 @@ public class FaultyConnection implements Connection {
             LOGGER.info("Connection's failure");
             throw new ConnectionException("Failed connection");
         } else {
-            LOGGER.info("Executed " + command + " successfully!");
+            LOGGER.info(OutputDataManager.getSuccessfulOutput(command));
         }
     }
 
     @Override
     public void close() throws Exception {
-        LOGGER.info("Connection closed");
+        LOGGER.info(OutputDataManager.getClosedOutput());
     }
 }
