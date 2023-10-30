@@ -8,11 +8,11 @@ public class StableConnection implements Connection {
 
     @Override
     public void execute(String command) {
-        LOGGER.info("Executed " + command + " successfully!");
+        LOGGER.info(OutputDataManager.getSuccessfulOutput(command));
     }
 
     @Override
     public void close() throws Exception {
-        LOGGER.info("Connection closed");
+        LOGGER.info(OutputDataManager.getClosedOutput());
     }
 }

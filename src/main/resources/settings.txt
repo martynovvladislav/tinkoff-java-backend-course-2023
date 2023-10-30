@@ -1,0 +1,5 @@
+Enter maxAttempts in the next line:
+5
+Enter words in the next line:
+123
+tomato
