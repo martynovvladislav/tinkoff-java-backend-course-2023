@@ -1,6 +1,5 @@
 Enter maxAttempts in the next line:
-10
+5
 Enter words in the next line:
-apple
+123
 tomato
-cucumber

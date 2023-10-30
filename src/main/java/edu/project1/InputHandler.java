@@ -26,12 +26,14 @@ public class InputHandler {
         char[] inputData = scanner.nextLine().toCharArray();
         if (inputData.length != 1) {
             throw new RuntimeException();
-        } else if (inputData[0] == 'y') {
-            return true;
-        } else if (inputData[0] == 'n') {
-            return false;
-        } else {
-            throw new RuntimeException();
+        }
+        switch (inputData[0]) {
+            case 'y':
+                return true;
+            case 'n':
+                return false;
+            default:
+                throw new RuntimeException();
         }
     }
 }
