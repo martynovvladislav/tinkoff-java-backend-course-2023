@@ -4,12 +4,12 @@ public class Rectangle {
     private int width;
     private int height;
 
+    public Rectangle() {
+    }
+
     public Rectangle(int width, int height) {
         this.height = height;
         this.width = width;
-    }
-
-    public Rectangle() {
     }
 
     public final Rectangle setWidth(int width) {
