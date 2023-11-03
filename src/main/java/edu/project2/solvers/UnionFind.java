@@ -1,7 +1,9 @@
-package edu.project2;
+package edu.project2.solvers;
 
 import java.util.NoSuchElementException;
 
+//Реализация Disjoint-set (СНМ)
+// для оптимальной генерации лабиринта методом Краскала
 public class UnionFind {
     private int[] parent;
     private int[] rank;
