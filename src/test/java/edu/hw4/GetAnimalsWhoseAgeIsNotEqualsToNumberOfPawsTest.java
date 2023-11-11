@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class getAnimalsWhoseAgeIsNotEqualsToNumberOfPawsTest {
+public class GetAnimalsWhoseAgeIsNotEqualsToNumberOfPawsTest {
 
     public static Stream<Arguments> animalsLists() {
         List<Animal> animals = new ArrayList<>(List.of(

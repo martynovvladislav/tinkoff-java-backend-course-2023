@@ -9,22 +9,27 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class mostFrequentSexTest {
+public class SortAnimalsByHeightTest {
     public static Stream<Arguments> animalsLists() {
         List<Animal> animals = new ArrayList<>(List.of(
             new Animal("cat", Animal.Type.CAT, Animal.Sex.M, 1, 100, 10, Boolean.FALSE),
             new Animal("dog", Animal.Type.DOG, Animal.Sex.F, 2, 50, 20, Boolean.TRUE),
-            new Animal("bird", Animal.Type.BIRD, Animal.Sex.M, 10, 10, 100, Boolean.TRUE)
+            new Animal("spider", Animal.Type.SPIDER, Animal.Sex.F, 3, 10, 5, Boolean.TRUE)
+        ));
+        List<Animal> sortedAnimals = new ArrayList<>(List.of(
+            new Animal("spider", Animal.Type.SPIDER, Animal.Sex.F, 3, 10, 5, Boolean.TRUE),
+            new Animal("dog", Animal.Type.DOG, Animal.Sex.F, 2, 50, 20, Boolean.TRUE),
+            new Animal("cat", Animal.Type.CAT, Animal.Sex.M, 1, 100, 10, Boolean.FALSE)
         ));
         return Stream.of(
-            Arguments.of(animals, Animal.Sex.M)
+            Arguments.of(animals, sortedAnimals)
         );
     }
 
     @ParameterizedTest
-    @DisplayName("get most frequent sex in list test")
+    @DisplayName("sorting animals by height")
     @MethodSource("animalsLists")
-    void getMostFrequentSexTest(List<Animal> animals, Animal.Sex sex) {
-        Assertions.assertEquals(AnimalUtils.getMostFrequentSex(animals), sex);
+    void sortAnimalsByHeightTest(List<Animal> animals, List<Animal> sortedAnimals) {
+        Assertions.assertEquals(sortedAnimals, AnimalUtils.sortAnimalsByHeight(animals));
     }
 }

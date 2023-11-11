@@ -5,14 +5,14 @@ import java.util.Objects;
 
 public class NegativeNameValidationError extends ValidationError {
 
-    private static final String CAUSE = "Ошибка в имени животного";
+    private static final String CAUSE = "имя";
 
     public NegativeNameValidationError() {
         super(CAUSE);
     }
 
     @Override
-    public boolean checkIfValid(Animal animal) {
+    public boolean isValid(Animal animal) {
         return animal.name() == null || animal.name().isEmpty();
     }
 

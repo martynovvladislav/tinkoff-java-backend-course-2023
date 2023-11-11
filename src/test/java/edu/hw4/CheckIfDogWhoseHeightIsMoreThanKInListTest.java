@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class getAnimalsWhoseWeightIsMoreThanHeightTest {
+public class CheckIfDogWhoseHeightIsMoreThanKInListTest {
 
     public static Stream<Arguments> animalsLists() {
         List<Animal> animals = new ArrayList<>(List.of(
@@ -19,20 +19,16 @@ public class getAnimalsWhoseWeightIsMoreThanHeightTest {
             new Animal("spider", Animal.Type.SPIDER, Animal.Sex.F, 3, 10, 50, Boolean.TRUE)
         ));
 
-        List<Animal> animalsAnswer = new ArrayList<>(List.of(
-            new Animal("cat", Animal.Type.CAT, Animal.Sex.M, 1, 150, 200, Boolean.TRUE),
-            new Animal("spider", Animal.Type.SPIDER, Animal.Sex.F, 3, 10, 50, Boolean.TRUE)
-        ));
-
         return Stream.of(
-            Arguments.of(animals, animalsAnswer)
+            Arguments.of(animals, 100, true),
+            Arguments.of(animals, 300, false)
         );
     }
 
     @ParameterizedTest
-    @DisplayName("get animals whose weight is more than height test")
+    @DisplayName("check if dog whose height is more than k in list")
     @MethodSource("animalsLists")
-    void getAnimalsWhoseWeightIsMoreThanHeightTest(List<Animal> animals, List<Animal> animalsAnswer) {
-        Assertions.assertEquals(AnimalUtils.getAnimalsWhoseWeightIsMoreThanHeight(animals), animalsAnswer);
+    void checkIfDogWhoseHeightIsMoreThanKInListTest(List<Animal> animals, int k, Boolean includes) {
+        Assertions.assertEquals(AnimalUtils.checkIfDogWhoseHeightIsMoreThanKInList(animals, k), includes);
     }
 }

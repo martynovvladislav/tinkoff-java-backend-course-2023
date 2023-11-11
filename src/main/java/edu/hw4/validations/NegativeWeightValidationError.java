@@ -5,14 +5,14 @@ import java.util.Objects;
 
 public class NegativeWeightValidationError extends ValidationError {
 
-    private static final String CAUSE = "Ошибка в весе животного";
+    private static final String CAUSE = "вес";
 
     public NegativeWeightValidationError() {
         super(CAUSE);
     }
 
     @Override
-    public boolean checkIfValid(Animal animal) {
+    public boolean isValid(Animal animal) {
         return animal.weight() < 0;
     }
 

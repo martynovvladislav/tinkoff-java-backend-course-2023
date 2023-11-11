@@ -164,7 +164,7 @@ public class AnimalUtils {
             new NegativeWeightValidationError()
         ));
         return validationErrors.stream()
-            .filter(validationError -> validationError.checkIfValid(animal))
+            .filter(validationError -> validationError.isValid(animal))
             .collect(Collectors.toSet());
     }
 

@@ -5,14 +5,14 @@ import java.util.Objects;
 
 public class NegativeHeightValidationError extends ValidationError {
 
-    public static final String CAUSE = "Ошибка в росте животного";
+    public static final String CAUSE = "рост";
 
     public NegativeHeightValidationError() {
         super(CAUSE);
     }
 
     @Override
-    public boolean checkIfValid(Animal animal) {
+    public boolean isValid(Animal animal) {
         return animal.height() < 0;
     }
 

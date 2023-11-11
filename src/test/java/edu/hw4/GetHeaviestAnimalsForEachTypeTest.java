@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 
-public class getHeaviestAnimalsForEachTypeTest {
+public class GetHeaviestAnimalsForEachTypeTest {
     public static Stream<Arguments> animalsLists() {
         List<Animal> animals = new ArrayList<>(List.of(
             new Animal("cat", Animal.Type.CAT, Animal.Sex.M, 1, 100, 100, Boolean.FALSE),

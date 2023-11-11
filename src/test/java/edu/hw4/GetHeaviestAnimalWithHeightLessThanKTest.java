@@ -9,27 +9,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class sortAnimalsByHeightTest {
+public class GetHeaviestAnimalWithHeightLessThanKTest {
+
     public static Stream<Arguments> animalsLists() {
         List<Animal> animals = new ArrayList<>(List.of(
             new Animal("cat", Animal.Type.CAT, Animal.Sex.M, 1, 100, 10, Boolean.FALSE),
             new Animal("dog", Animal.Type.DOG, Animal.Sex.F, 2, 50, 20, Boolean.TRUE),
+            new Animal("bird", Animal.Type.BIRD, Animal.Sex.M, 10, 10, 100, Boolean.TRUE),
             new Animal("spider", Animal.Type.SPIDER, Animal.Sex.F, 3, 10, 5, Boolean.TRUE)
         ));
-        List<Animal> sortedAnimals = new ArrayList<>(List.of(
-            new Animal("spider", Animal.Type.SPIDER, Animal.Sex.F, 3, 10, 5, Boolean.TRUE),
-            new Animal("dog", Animal.Type.DOG, Animal.Sex.F, 2, 50, 20, Boolean.TRUE),
-            new Animal("cat", Animal.Type.CAT, Animal.Sex.M, 1, 100, 10, Boolean.FALSE)
-        ));
         return Stream.of(
-            Arguments.of(animals, sortedAnimals)
+            Arguments.of(animals, 50,
+                new Animal("bird", Animal.Type.BIRD, Animal.Sex.M, 10, 10, 100, Boolean.TRUE)
+            )
         );
     }
 
     @ParameterizedTest
-    @DisplayName("sorting animals by height")
+    @DisplayName("get heaviest animal with height is less than k")
     @MethodSource("animalsLists")
-    void sortAnimalsByHeightTest(List<Animal> animals, List<Animal> sortedAnimals) {
-        Assertions.assertEquals(sortedAnimals, AnimalUtils.sortAnimalsByHeight(animals));
+    void getHeaviestAnimalWithHeightLessThanK(List<Animal> animals, int k, Animal animal) {
+        Assertions.assertEquals(AnimalUtils.getHeaviestAnimalWithHeightLessThanK(animals, k).orElse(null), animal);
     }
 }

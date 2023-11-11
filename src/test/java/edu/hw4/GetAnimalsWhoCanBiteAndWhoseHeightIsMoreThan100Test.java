@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class getAnimalsWhoCanBiteAndWhoseHeightIsMoreThan100Test {
+public class GetAnimalsWhoCanBiteAndWhoseHeightIsMoreThan100Test {
 
     public static Stream<Arguments> animalsLists() {
         List<Animal> animals = new ArrayList<>(List.of(

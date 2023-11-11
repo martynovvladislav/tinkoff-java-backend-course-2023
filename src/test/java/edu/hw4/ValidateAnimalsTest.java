@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class validateAnimalsTest {
+public class ValidateAnimalsTest {
 
     @Test
     @DisplayName("validate animals test")

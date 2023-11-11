@@ -5,14 +5,14 @@ import java.util.Objects;
 
 public class NegativeAgeValidationError extends ValidationError {
 
-    private static final String CAUSE = "Ошибка в возрасте животного";
+    private static final String CAUSE = "возраст";
 
     public NegativeAgeValidationError() {
         super(CAUSE);
     }
 
     @Override
-    public boolean checkIfValid(Animal animal) {
+    public boolean isValid(Animal animal) {
         return animal.age() < 0;
     }
 

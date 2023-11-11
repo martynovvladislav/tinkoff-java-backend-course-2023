@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 
-public class getSummaryWeightOfEveryTypeOfAnimalsWhoseAgeIsMoreThanKAndLessThanLTest {
+public class GetSummaryWeightOfEveryTypeOfAnimalsWhoseAgeIsMoreThanKAndLessThanLTest {
 
     public static Stream<Arguments> animalsLists() {
         List<Animal> animals = new ArrayList<>(List.of(

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class getAnimalValidationsListTest {
+public class GetAnimalValidationsListTest {
 
     @Test
     void getAnimalValidationsList() {
@@ -16,9 +16,9 @@ public class getAnimalValidationsListTest {
         Animal validAnimal = new Animal("spider", Animal.Type.SPIDER, Animal.Sex.M, 5, 30, 10, Boolean.FALSE);
         List<Animal> animals = new ArrayList<>(List.of(nameInvalidAnimal, allInvalidAnimal, ageInvalidAnimal, validAnimal));
         List<String> animalsValidationList = new ArrayList<>(List.of(
-            "[Ошибка в имени животного]",
-            "[Ошибка в весе животного, Ошибка в росте животного, Ошибка в возрасте животного]",
-            "[Ошибка в возрасте животного]",
+            "[Ошибка в параметре животного: имя]",
+            "[Ошибка в параметре животного: рост, Ошибка в параметре животного: возраст, Ошибка в параметре животного: вес]",
+            "[Ошибка в параметре животного: возраст]",
             "[]"
         ));
         int index = 0;

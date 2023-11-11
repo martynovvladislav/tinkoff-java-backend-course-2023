@@ -9,27 +9,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class getKthOldestAnimalTest {
+public class MostFrequentSexTest {
     public static Stream<Arguments> animalsLists() {
         List<Animal> animals = new ArrayList<>(List.of(
             new Animal("cat", Animal.Type.CAT, Animal.Sex.M, 1, 100, 10, Boolean.FALSE),
             new Animal("dog", Animal.Type.DOG, Animal.Sex.F, 2, 50, 20, Boolean.TRUE),
-            new Animal("bird", Animal.Type.BIRD, Animal.Sex.M, 10, 10, 100, Boolean.TRUE),
-            new Animal("spider", Animal.Type.SPIDER, Animal.Sex.F, 3, 10, 5, Boolean.TRUE)
+            new Animal("bird", Animal.Type.BIRD, Animal.Sex.M, 10, 10, 100, Boolean.TRUE)
         ));
         return Stream.of(
-            Arguments.of(animals, 1,
-                new Animal("bird", Animal.Type.BIRD, Animal.Sex.M, 10, 10, 100, Boolean.TRUE)),
-            Arguments.of(animals, 2,
-                new Animal("spider", Animal.Type.SPIDER, Animal.Sex.F, 3, 10, 5, Boolean.TRUE))
+            Arguments.of(animals, Animal.Sex.M)
         );
     }
 
     @ParameterizedTest
-    @DisplayName("get k oldest animals test")
+    @DisplayName("get most frequent sex in list test")
     @MethodSource("animalsLists")
-    void getKOldestAnimalsTest(List<Animal> animals, int k, Animal kthHeaviestAnimal) {
-        Assertions.assertEquals(AnimalUtils.getKthOldestAnimal(animals, k), kthHeaviestAnimal);
+    void getMostFrequentSexTest(List<Animal> animals, Animal.Sex sex) {
+        Assertions.assertEquals(AnimalUtils.getMostFrequentSex(animals), sex);
     }
 }
-
