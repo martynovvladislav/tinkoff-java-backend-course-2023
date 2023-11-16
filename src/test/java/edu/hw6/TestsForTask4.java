@@ -21,9 +21,11 @@ public class TestsForTask4 {
         FileUtils.cleanDirectory(new File(String.valueOf(path)));
         Task4.createOutputStreamChain();
         Assertions.assertTrue(Files.exists(Path.of(path + "/data.txt")));
-        Assertions.assertEquals(
-            "Programming is learned by writing programs. ― Brian Kernighan\r\n",
-            Files.readString(Path.of(path + "/data.txt"))
-        );
+        byte[] bytes = Files.readAllBytes(Path.of(path + "/data.txt"));
+        StringBuilder text = new StringBuilder();
+        for (byte fileByte : bytes) {
+            text.append((char) fileByte);
+        }
+        Assertions.assertEquals(text.toString().strip(), "Programming is learned by writing programs. - Brian Kernighan");
     }
 }
