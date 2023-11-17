@@ -8,16 +8,11 @@ public class FirstDigitDateHandler extends DateHandler {
 
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-    public boolean canHandle(String date) {
-        try {
-            LocalDate localDate = LocalDate.parse(date);
-        } catch (DateTimeParseException e) {
-            return false;
-        }
-        return true;
-    }
-
     public LocalDate handle(String date) {
-        return LocalDate.parse(date);
+        try {
+            return LocalDate.parse(date);
+        } catch (DateTimeParseException e) {
+            return null;
+        }
     }
 }

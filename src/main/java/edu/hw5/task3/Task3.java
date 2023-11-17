@@ -12,6 +12,7 @@ import edu.hw5.task3.handlers.ThirdDigitDateHandler;
 import edu.hw5.task3.handlers.ThirdTextDateHandler;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 public class Task3 {
@@ -26,8 +27,8 @@ public class Task3 {
     public static Optional<LocalDate> parseDate(String date) {
         return HANDLER_LIST
             .stream()
-            .filter(handler -> handler.canHandle(date))
             .map(handler -> handler.handle(date))
+            .filter(Objects::nonNull)
             .findAny();
     }
 }
