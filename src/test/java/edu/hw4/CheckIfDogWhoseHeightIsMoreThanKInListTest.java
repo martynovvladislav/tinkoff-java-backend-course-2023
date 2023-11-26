@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public class CheckIfDogWhoseHeightIsMoreThanKInListTest {
-
     public static Stream<Arguments> animalsLists() {
         List<Animal> animals = new ArrayList<>(List.of(
             new Animal("cat", Animal.Type.CAT, Animal.Sex.M, 1, 150, 200, Boolean.TRUE),
