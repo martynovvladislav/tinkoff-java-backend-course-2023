@@ -8,7 +8,8 @@ import java.util.Map;
 public class SingleThreadPasswordSolver {
     private final Map<String, String> database = new HashMap<>();
     private final Map<String, String> foundPasswords = new HashMap<>();
-    private String symbols = "abcdefghijklmnopqrstuvwxyz0123456789";
+    private final String symbols = "abcdefghijklmnopqrstuvwxyz0123456789";
+    private final static int MAX_LENGTH = 4;
 
     public void readDatabase(String data) {
         String[] lines = data.split("\n");
@@ -37,20 +38,20 @@ public class SingleThreadPasswordSolver {
 
             return result.toString();
         } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
             return null;
         }
     }
 
-    private void generatePasswords(String cur) {
+    @SuppressWarnings("checkstyle:ReturnCount")
+    public void generatePasswords(String currentPassword) {
         if (database.isEmpty()) {
             return;
         }
-        checkPassword(cur);
-        if (cur.length() >= 4) {
+        checkPassword(currentPassword);
+        if (currentPassword.length() >= MAX_LENGTH) {
             return;
         }
-        StringBuilder stringBuilder = new StringBuilder(cur);
+        StringBuilder stringBuilder = new StringBuilder(currentPassword);
         for (int i = 0; i < symbols.length(); i++) {
             stringBuilder.append(symbols.charAt(i));
             generatePasswords(String.valueOf(stringBuilder));
@@ -60,22 +61,13 @@ public class SingleThreadPasswordSolver {
 
     private void checkPassword(String password) {
         String hashcode = hashStringMD5(password);
-        //System.out.println(hashcode);
         if (database.containsKey(hashcode)) {
             foundPasswords.put(database.get(hashcode), password);
             database.remove(hashcode);
         }
     }
 
-    public static void main(String[] args) {
-        String data = "a.v.petrov  02c425157ecd32f259548b33402ff6d3\n";
-        SingleThreadPasswordSolver solver = new SingleThreadPasswordSolver();
-        solver.readDatabase(data);
-        long x = System.currentTimeMillis();
-        solver.generatePasswords("");
-        x -= System.currentTimeMillis();
-        System.out.println(x);
-        System.out.println(solver.foundPasswords);
-        System.out.println(solver.database);
+    public Map<String, String> getFoundPasswords() {
+        return foundPasswords;
     }
 }

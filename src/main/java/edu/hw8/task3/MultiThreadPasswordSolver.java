@@ -4,73 +4,82 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.Callable;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class MultiThreadPasswordSolver {
-    private static final Map<String, String> database = new HashMap<>(Map.of(
-        "02c425157ecd32f259548b33402ff6d3", "v.v."
-    ));
-    private static final CountDownLatch latch = new CountDownLatch(1);
-    private static final Map<String, String> foundedPasswords = new HashMap<>();
-    private static final String alphabet = "abcdefghijklmnopqrstuvwxyz0123456789";
-    private static final ExecutorService executorService = Executors.newFixedThreadPool(8);
+    private static final Map<String, String> DATABASE = new HashMap<>();
+    private static CountDownLatch latch;
+    public static final Map<String, String> FOUND_PASSWORDS = new HashMap<>();
+    private static final String SYMBOLS = "abcdefghijklmnopqrstuvwxyz0123456789";
+    private static final ExecutorService EXECUTOR_SERVICE = Executors.newFixedThreadPool(10);
+    private static final int MAX_LENGTH = 4;
 
-
-    public static String getHashMD5(String password) {
-        MessageDigest md;
+    public static String hashStringMD5(String input) {
         try {
-            md = MessageDigest.getInstance("MD5");
+            MessageDigest md = MessageDigest.getInstance("MD5");
+
+            md.update(input.getBytes());
+
+            byte[] digest = md.digest();
+
+            StringBuilder result = new StringBuilder();
+            for (byte b : digest) {
+                result.append(String.format("%02x", b));
+            }
+
+            return result.toString();
         } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
+            return null;
         }
-        md.update(password.getBytes());
-        byte[] md5Bytes = md.digest();
-        StringBuilder sb = new StringBuilder();
-        for (byte b : md5Bytes) {
-            sb.append(String.format("%02x", b));
-        }
-        return sb.toString();
     }
 
-    public static void main(String[] args) {
-        long x = System.currentTimeMillis();
-        System.out.println(new MultiThreadPasswordSolver().bruteForce());
-        x -= System.currentTimeMillis();
-        System.out.println(x);
+    public void readDatabase(String data) {
+        String[] lines = data.split("\n");
+
+        for (String line : lines) {
+            String[] parts = line.split("\\s+");
+
+            if (parts.length == 2) {
+                DATABASE.put(parts[1], parts[0]);
+            }
+        }
+        latch = new CountDownLatch(DATABASE.size());
     }
-    public Map<String, String> bruteForce() {
-        executorService.execute(new myThread(""));
+
+    public void generatePasswords() {
+        EXECUTOR_SERVICE.submit(new SolvingThread(""));
         try {
             latch.await();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        return foundedPasswords;
     }
 
-    private record myThread(String currentPassword) implements Runnable {
+    private record SolvingThread(String currentPassword) implements Callable<Void> {
 
         @Override
-        public void run() {
-            if (!database.isEmpty()) {
-                String hash = getHashMD5(currentPassword);
-                if (database.containsKey(hash)) {
-                    foundedPasswords.put(database.get(hash), currentPassword);
-                    database.remove(hash);
+        public Void call() {
+            if (!DATABASE.isEmpty()) {
+                String hash = hashStringMD5(currentPassword);
+                if (DATABASE.containsKey(hash)) {
+                    FOUND_PASSWORDS.put(DATABASE.get(hash), currentPassword);
+                    DATABASE.remove(hash);
                     latch.countDown();
                 }
-                if (currentPassword.length() >= 4) {
-                    return;
+                if (currentPassword.length() >= MAX_LENGTH) {
+                    return null;
                 }
-                for (char symbol : alphabet.toCharArray()) {
-                    executorService.execute(new myThread(currentPassword + symbol));
+                StringBuilder stringBuilder = new StringBuilder(currentPassword);
+                for (int i = 0; i < SYMBOLS.length(); i++) {
+                    stringBuilder.append(SYMBOLS.charAt(i));
+                    EXECUTOR_SERVICE.submit(new SolvingThread(String.valueOf(stringBuilder)));
+                    stringBuilder.deleteCharAt(stringBuilder.length() - 1);
                 }
-            } else {
-                Thread.currentThread().interrupt();
             }
-
+            return null;
         }
     }
 }
