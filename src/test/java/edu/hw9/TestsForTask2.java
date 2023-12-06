@@ -20,8 +20,8 @@ public class TestsForTask2 {
         FileCounter fileCounter = new FileCounter(directory, 2);
         List<File> files = forkJoinPool.invoke(fileCounter);
         Assertions.assertEquals(files, List.of(
-            new File("src\\main\\java\\edu\\hw2\\task3\\connectionmanagers"),
-            new File("src\\main\\java\\edu\\hw2\\task3\\connections")
+            new File("src/main/java/edu/hw2/task3/connectionmanagers"),
+            new File("src/main/java/edu/hw2/task3/connections")
         ));
     }
 
@@ -45,8 +45,8 @@ public class TestsForTask2 {
         FileSizeSearcher fileSizeSearcher = new FileSizeSearcher(directory, 2000);
         List<File> files = forkJoinPool.invoke(fileSizeSearcher);
         Assertions.assertEquals(files, List.of(
-            new File("src\\main\\java\\edu\\project1\\FileHandler.java"),
-            new File("src\\main\\java\\edu\\project1\\Game.java")
+            new File("src/main/java/edu/project1/FileHandler.java"),
+            new File("src/main/java/edu/project1/Game.java")
         ));
     }
 }
