@@ -8,6 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ForkJoinPool;
 
@@ -19,10 +20,13 @@ public class TestsForTask2 {
         ForkJoinPool forkJoinPool = new ForkJoinPool();
         FileCounter fileCounter = new FileCounter(directory, 2);
         List<File> files = forkJoinPool.invoke(fileCounter);
-        Assertions.assertEquals(files, List.of(
+        Collections.sort(files);
+        List<File> expected = new ArrayList(List.of(
             new File("src/main/java/edu/hw2/task3/connectionmanagers"),
             new File("src/main/java/edu/hw2/task3/connections")
         ));
+        Collections.sort(expected);
+        Assertions.assertEquals(files, expected);
     }
 
     @Test
@@ -44,9 +48,12 @@ public class TestsForTask2 {
         ForkJoinPool forkJoinPool = new ForkJoinPool();
         FileSizeSearcher fileSizeSearcher = new FileSizeSearcher(directory, 2000);
         List<File> files = forkJoinPool.invoke(fileSizeSearcher);
-        Assertions.assertEquals(files, List.of(
+        Collections.sort(files);
+        List<File> expected = new ArrayList<>(List.of(
             new File("src/main/java/edu/project1/FileHandler.java"),
             new File("src/main/java/edu/project1/Game.java")
         ));
+        Collections.sort(expected);
+        Assertions.assertEquals(files, expected);
     }
 }
