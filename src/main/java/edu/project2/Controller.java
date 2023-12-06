@@ -8,11 +8,13 @@ import edu.project2.maze.Maze;
 import edu.project2.renderers.MazeRenderer;
 import edu.project2.solvers.BFSSolver;
 import edu.project2.solvers.DFSSolver;
+import edu.project2.solvers.ParallelDFSSolver;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class Controller {
-    private Controller() {}
+    private Controller() {
+    }
 
     private static final Logger LOGGER = LogManager.getLogger();
     private static final int MAZE_HEIGHT = 15;
@@ -31,14 +33,24 @@ public class Controller {
         MazeRenderer renderer = new MazeRenderer();
         LOGGER.info(renderer.render(maze));
 
-        LOGGER.info("BFS SOLUTION:");
+        LOGGER.info("DFS PARALLEL SOLUTION:");
         LOGGER.info(renderer.render(
-            maze, new BFSSolver().solve(maze, new Coordinate(0, 0), new Coordinate(MAZE_HEIGHT - 1, MAZE_WIDTH - 1)))
-        );
+            maze,
+            new ParallelDFSSolver().solve(maze, new Coordinate(0, 0), new Coordinate(MAZE_HEIGHT - 1, MAZE_WIDTH - 1))
+        ));
 
         LOGGER.info("DFS SOLUTION:");
         LOGGER.info(renderer.render(
-            maze, new DFSSolver().solve(maze, new Coordinate(0, 0), new Coordinate(MAZE_HEIGHT - 1, MAZE_WIDTH - 1)))
+                maze,
+                new DFSSolver().solve(maze, new Coordinate(0, 0), new Coordinate(MAZE_HEIGHT - 1, MAZE_WIDTH - 1))
+            )
+        );
+
+        LOGGER.info("BFS SOLUTION:");
+        LOGGER.info(renderer.render(
+                maze,
+                new BFSSolver().solve(maze, new Coordinate(0, 0), new Coordinate(MAZE_HEIGHT - 1, MAZE_WIDTH - 1))
+            )
         );
     }
 }
