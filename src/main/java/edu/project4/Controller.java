@@ -63,9 +63,9 @@ public class Controller {
         FractalImage image = renderer.render(
             FractalImage.create(3840, 2160),
             new Rect(-3, -2, 6, 6),
-            List.of(new HeartTransformation()),
-            5,
-            1,
+            List.of(new LinearTransformation()),
+            10,
+            3,
             100,
             10000000
         );
