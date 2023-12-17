@@ -1,13 +1,13 @@
 package edu.hw11.task2;
 
 import net.bytebuddy.ByteBuddy;
-import net.bytebuddy.dynamic.loading.ClassLoadingStrategy;
 import net.bytebuddy.dynamic.loading.ClassReloadingStrategy;
 import net.bytebuddy.implementation.MethodDelegation;
 import static net.bytebuddy.matcher.ElementMatchers.named;
 
 public class Redefiner {
-    private Redefiner() {}
+    private Redefiner() {
+    }
 
     public static void redefine() {
         new ByteBuddy()
