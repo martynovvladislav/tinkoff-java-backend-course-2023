@@ -175,7 +175,7 @@
                     <configuration>
                         <excludes>
                             <exclude>*ArithmeticUtils*</exclude>
-                            <exclude>*Redefiner*</exclude>
+                            <exclude>*MultiplicationClass*</exclude>
                         </excludes>
                     </configuration>
                     <executions>
