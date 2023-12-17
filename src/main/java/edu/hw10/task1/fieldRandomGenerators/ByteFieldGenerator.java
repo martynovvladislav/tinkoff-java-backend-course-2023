@@ -11,6 +11,7 @@ public class ByteFieldGenerator implements FieldRandomGenerator<Byte> {
     public Byte generate(Random random, Annotation[] annotations) {
         int min = Byte.MIN_VALUE;
         int max = Byte.MAX_VALUE;
+        boolean notNull = false;
         for (int i = 0; i < annotations.length; i++) {
             if (annotations[i] instanceof Max) {
                 max = (int) ((Max) annotations[i]).value();
@@ -18,7 +19,13 @@ public class ByteFieldGenerator implements FieldRandomGenerator<Byte> {
             if (annotations[i] instanceof Min) {
                 min = (int) ((Min) annotations[i]).value();
             }
+            if (annotations[i] instanceof NotNull) {
+                notNull = true;
+            }
         }
-        return (byte) random.nextInt(min, max);
+        if (notNull) {
+            return (byte) random.nextInt(min, max);
+        }
+        return null;
     }
 }

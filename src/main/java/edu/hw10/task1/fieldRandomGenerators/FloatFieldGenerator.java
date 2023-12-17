@@ -12,6 +12,7 @@ public class FloatFieldGenerator implements FieldRandomGenerator<Float> {
     public Float generate(Random random, Annotation[] annotations) {
         double min = Float.MIN_VALUE;
         double max = Float.MAX_VALUE;
+        boolean notNull = false;
         for (int i = 0; i < annotations.length; i++) {
             if (annotations[i] instanceof Max) {
                 max = (float) ((Max) annotations[i]).value();
@@ -19,7 +20,13 @@ public class FloatFieldGenerator implements FieldRandomGenerator<Float> {
             if (annotations[i] instanceof Min) {
                 min = (float) ((Min) annotations[i]).value();
             }
+            if (annotations[i] instanceof NotNull) {
+                notNull = true;
+            }
         }
-        return (float) random.nextDouble(min, max);
+        if (notNull) {
+            return (float) random.nextDouble(min, max);
+        }
+        return null;
     }
 }

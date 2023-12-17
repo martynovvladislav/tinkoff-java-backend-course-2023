@@ -16,6 +16,7 @@ public class CacheProxy implements InvocationHandler {
     private final Object cachingObject;
     private final Map<String, Object> cache;
     private final Path path;
+    private final static String EXTENSION = ".txt";
 
     private CacheProxy(Object cachingObject) {
         this.cachingObject = cachingObject;
@@ -37,15 +38,6 @@ public class CacheProxy implements InvocationHandler {
             Cache annotation = method.getAnnotation(Cache.class);
             if (annotation.persist()) {
                 load(method);
-                String key = generateKey(method, args);
-                if (cache.containsKey(key)) {
-                    return cache.get(key);
-                }
-
-                Object methodResult = method.invoke(cachingObject, args);
-                cache.put(key, methodResult);
-                save(method);
-                return methodResult;
             }
 
             String key = generateKey(method, args);
@@ -55,6 +47,9 @@ public class CacheProxy implements InvocationHandler {
 
             Object methodResult = method.invoke(cachingObject, args);
             cache.put(key, methodResult);
+            if (annotation.persist()) {
+                save(method);
+            }
             return methodResult;
         }
         return method.invoke(cachingObject, args);
@@ -69,7 +64,8 @@ public class CacheProxy implements InvocationHandler {
     }
 
     private void save(Method method) {
-        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(path.toString() + "/" + method.getName() + ".txt"))) {
+        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(path.toString()
+            + "/" + method.getName() + EXTENSION))) {
             outputStream.writeObject(cache);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -77,7 +73,8 @@ public class CacheProxy implements InvocationHandler {
     }
 
     private void load(Method method) {
-        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(path.toString() + "/" + method.getName() + ".txt"))) {
+        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(path.toString()
+            + "/" + method.getName() + EXTENSION))) {
             Object object = inputStream.readObject();
             if (object instanceof Map) {
                 cache.putAll((Map<String, Object>) object);

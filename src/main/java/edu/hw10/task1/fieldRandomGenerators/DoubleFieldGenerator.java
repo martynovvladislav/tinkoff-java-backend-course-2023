@@ -11,6 +11,7 @@ public class DoubleFieldGenerator implements FieldRandomGenerator<Double> {
     public Double generate(Random random, Annotation[] annotations) {
         double min = Double.MIN_VALUE;
         double max = Double.MAX_VALUE;
+        boolean notNull = false;
         for (int i = 0; i < annotations.length; i++) {
             if (annotations[i] instanceof Max) {
                 max = (double) ((Max) annotations[i]).value();
@@ -18,7 +19,13 @@ public class DoubleFieldGenerator implements FieldRandomGenerator<Double> {
             if (annotations[i] instanceof Min) {
                 min = (double) ((Min) annotations[i]).value();
             }
+            if (annotations[i] instanceof NotNull) {
+                notNull = true;
+            }
         }
-        return random.nextDouble(min, max);
+        if (notNull) {
+            return random.nextDouble(min, max);
+        }
+        return null;
     }
 }

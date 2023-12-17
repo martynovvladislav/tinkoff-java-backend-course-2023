@@ -11,7 +11,7 @@ public class IntegerFieldGenerator implements FieldRandomGenerator<Integer> {
     public Integer generate(Random random, Annotation[] annotations) {
         int min = Integer.MIN_VALUE;
         int max = Integer.MAX_VALUE;
-        System.out.println(annotations.length);
+        boolean notNull = false;
         for (int i = 0; i < annotations.length; i++) {
             if (annotations[i] instanceof Max) {
                 max = (int) ((Max) annotations[i]).value();
@@ -19,7 +19,13 @@ public class IntegerFieldGenerator implements FieldRandomGenerator<Integer> {
             if (annotations[i] instanceof Min) {
                 min = (int) ((Min) annotations[i]).value();
             }
+            if (annotations[i] instanceof NotNull) {
+                notNull = true;
+            }
         }
-        return  random.nextInt(min, max);
+        if (notNull) {
+            return random.nextInt(min, max);
+        }
+        return null;
     }
 }
